@@ -1,5 +1,3 @@
-# todo.py
-
 todos = []
 
 def add_todo(item):
@@ -9,6 +7,13 @@ def view_todos():
     for idx, item in enumerate(todos):
         status = "Done" if item["complete"] else "Not Done"
         print(f"{idx + 1}. {item['task']} - {status}")
+
+def remove_todo(index):
+    if 0 <= index < len(todos):
+        removed_item = todos.pop(index)
+        print(f"Removed: {removed_item['task']}")
+    else:
+        print("Invalid index!")
 
 def mark_as_complete(index):
     if 0 <= index < len(todos):
@@ -21,7 +26,8 @@ if __name__ == "__main__":
         print("\n1. Add Todo")
         print("2. View Todos")
         print("3. Remove Todo")
-        print("4. Quit")
+        print("4. Mark as Complete")
+        print("5. Quit")
         
         choice = input("Enter your choice: ")
         
@@ -34,6 +40,9 @@ if __name__ == "__main__":
             index = int(input("Enter the index to remove: "))
             remove_todo(index - 1)
         elif choice == "4":
+            index = int(input("Enter the index to mark as complete: "))
+            mark_as_complete(index - 1)
+        elif choice == "5":
             break
         else:
             print("Invalid choice!")
